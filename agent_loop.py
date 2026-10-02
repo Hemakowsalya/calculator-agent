@@ -1,23 +1,32 @@
 # Observe -> Decide -> Act Agent Loop
 
-for iteration in range(1, 4):
 
-    print(f"\n--- Iteration {iteration} ---")
+def observe():
+    return input("Observe: Enter current situation: ")
 
-    # 1. OBSERVE
-    observation = input("Observe: Enter current situation: ")
 
-    # 2. DECIDE
+def decide(observation):
     if "rain" in observation.lower():
-        decision = "Carry an umbrella"
-    elif "hot" in observation.lower():
-        decision = "Drink water"
-    else:
-        decision = "Continue normally"
+        return "Carry an umbrella"
+    if "hot" in observation.lower():
+        return "Drink water"
+    return "Continue normally"
 
-    print("Decide:", decision)
 
-    # 3. ACT
+def act(decision):
     print("Act:", decision)
+    return decision
 
-print("\nAgent loop completed after 3 iterations.")
+
+def agent_loop(max_iters=3):
+    for iteration in range(1, max_iters + 1):
+        print(f"\n--- Iteration {iteration} ---")
+        observation = observe()
+        decision = decide(observation)
+        print("Decide:", decision)
+        act(decision)
+    return "Agent loop completed"
+
+
+if __name__ == "__main__":
+    print(agent_loop())
