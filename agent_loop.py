@@ -18,14 +18,16 @@ def act(decision):
     return decision
 
 
-def agent_loop(max_iters=3):
+def agent_loop(max_iters=10):
     for iteration in range(1, max_iters + 1):
         print(f"\n--- Iteration {iteration} ---")
         observation = observe()
         decision = decide(observation)
         print("Decide:", decision)
+        if decision == "success":
+            return "success"
         act(decision)
-    return "Agent loop completed"
+    return "failure"
 
 
 if __name__ == "__main__":
